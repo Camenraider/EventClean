@@ -8,10 +8,11 @@ public record Evento(
     Long id,
     String nome,
     String descricao,
-    String lidentificador,
-    LocalDateTime inicio,
-    LocalDateTime fim,
-    String local,
+    String identificador,
+    LocalDateTime dataInicio,
+    LocalDateTime dataFim,
+    String localEvento,
+    Integer capacidade,
     String organizador,
     TipoEvento tipo
 ) {}
