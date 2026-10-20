@@ -1,8 +1,11 @@
 package com.joao.EventClean.core.enums;
 
 public enum TipoEvento {
-    NETWORKING,
+    WORKSHOP,
     PALESTRA,
     MUSICA,
-    SEMINARIO
+    SEMINARIO;
+
 }
+
+
