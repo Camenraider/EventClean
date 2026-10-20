@@ -18,4 +18,12 @@ public class ControllerExceptionHandler {
         response.put("Message", "Please, insert a valid hashId for your event and try again");
         return new ResponseEntity<Map<String, String>>(response, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(NotFoundEventException.class)
+    public ResponseEntity<Map<String, String>> handleNotFoundEventExceptions(NotFoundEventException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("Error: ", ex.getMessage());
+        response.put("Message", "The request was not found, check the identifier and try again");
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 }

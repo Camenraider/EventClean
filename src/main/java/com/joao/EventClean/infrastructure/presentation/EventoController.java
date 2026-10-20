@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.joao.EventClean.core.entities.Evento;
 import com.joao.EventClean.core.usecases.BuscarEventoUseCase;
 import com.joao.EventClean.core.usecases.CriarEventoUseCase;
+import com.joao.EventClean.core.usecases.FiltrarIdentificadorEventoUseCase;
 import com.joao.EventClean.infrastructure.dtos.EventoDto;
 import com.joao.EventClean.infrastructure.mapper.EventoDtoMapper;
 
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequestMapping("api/v1/")
@@ -26,12 +29,14 @@ public class EventoController {
     private final CriarEventoUseCase criarEventoCase;
     private final EventoDtoMapper eventoDtoMapper;
     private final BuscarEventoUseCase buscarEventoUseCase;
-
+    private final FiltrarIdentificadorEventoUseCase filtrarIdentificadorEventoUseCase;
+    
     public EventoController(CriarEventoUseCase criarEventoCase, EventoDtoMapper eventoDtoMapper,
-            BuscarEventoUseCase buscarEventoUseCase) {
+            BuscarEventoUseCase buscarEventoUseCase, FiltrarIdentificadorEventoUseCase filtrarIdentificadorEventoUseCase) {
         this.criarEventoCase = criarEventoCase;
         this.eventoDtoMapper = eventoDtoMapper;
         this.buscarEventoUseCase = buscarEventoUseCase;
+        this.filtrarIdentificadorEventoUseCase = filtrarIdentificadorEventoUseCase;
     }
 
     @PostMapping("criarevento")
@@ -50,5 +55,12 @@ public class EventoController {
         List<Evento> listaEventos = buscarEventoUseCase.execute();
         return listaEventos.stream().map(eventoDtoMapper::toDto).collect(Collectors.toList()); 
     }
+
+    @GetMapping("identificador/{identificador}")
+    public ResponseEntity<EventoDto> buscaPorIdentificador(@PathVariable  String identificador) {
+        Evento evento = filtrarIdentificadorEventoUseCase.execute(identificador);
+        return ResponseEntity.ok(eventoDtoMapper.toDto(evento));
+    }
+    
 
 }

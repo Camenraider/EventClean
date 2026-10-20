@@ -8,6 +8,8 @@ import com.joao.EventClean.core.usecases.BuscarEventoUseCase;
 import com.joao.EventClean.core.usecases.BuscarEventoUseCaseImpl;
 import com.joao.EventClean.core.usecases.CriarEventoUseCase;
 import com.joao.EventClean.core.usecases.CriarEventoUseCaseImpl;
+import com.joao.EventClean.core.usecases.FiltrarIdentificadorEventoUseCase;
+import com.joao.EventClean.core.usecases.FiltrarIdentificadorEventoUseCaseImpl;
 
 @Configuration 
 public class BeanConfigurations {
@@ -20,5 +22,10 @@ public class BeanConfigurations {
     @Bean 
     public BuscarEventoUseCase buscarEventoUseCase(EventoGateway eventoGateway) {
         return new BuscarEventoUseCaseImpl(eventoGateway);
+    }
+
+    @Bean 
+    public FiltrarIdentificadorEventoUseCase filtrarIdentificadorEventoUseCase(EventoGateway eventoGateway) {
+        return new FiltrarIdentificadorEventoUseCaseImpl(eventoGateway);
     }
 }

@@ -1,6 +1,7 @@
 package com.joao.EventClean.infrastructure.gateway;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -37,6 +38,11 @@ public class EventoRepositoryGateway implements EventoGateway {
     public boolean existePorIdentificador(String identificador) {
         return eventoRepository.findAll().stream()
                     .anyMatch(evento -> evento.getIdentificador().equalsIgnoreCase(identificador));
+    }
+
+    @Override
+    public Optional<Evento> filtrarPorIdentificador(String identificador) {
+        return eventoRepository.findByIdentificador(identificador);    
     }
 
 }
