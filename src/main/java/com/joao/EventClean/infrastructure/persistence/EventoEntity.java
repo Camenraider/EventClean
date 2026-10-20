@@ -26,23 +26,23 @@ public class EventoEntity {
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column 
+    @Column(name = "nome", length = 255, nullable = false) 
     private String nome;
-    @Column
+    @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
-    @Column
+    @Column(name = "identificador", nullable = false, unique = true)
     private String identificador;
-    @Column(name = "data_inicio")
+    @Column(name = "data_inicio", nullable = false)
     private LocalDateTime dataInicio;
-    @Column(name = "data_fim")
+    @Column(name = "data_fim", nullable = false)
     private LocalDateTime dataFim;
-    @Column(name = "local_evento")
+    @Column(name = "local_evento", length = 255, nullable = false)
     private String localEvento;
-    @Column 
+    @Column(nullable = false) 
     private Integer capacidade;
-    @Column
+    @Column(length = 255, nullable = false)
     private String organizador;
-    @Column
+    @Column(length = 50, nullable = false)
     @Enumerated (EnumType.STRING)
     private TipoEvento tipo;
 }
