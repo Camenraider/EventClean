@@ -19,6 +19,4 @@ public class FiltrarIdentificadorEventoUseCaseImpl implements FiltrarIdentificad
         );
     }
 
-    
-    
 }

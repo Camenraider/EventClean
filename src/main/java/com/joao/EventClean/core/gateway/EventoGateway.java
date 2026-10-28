@@ -15,4 +15,6 @@ public interface  EventoGateway {
 
     boolean existePorIdentificador(String identificador);
 
+    Evento criarCodigo(Evento evento);
+
 }

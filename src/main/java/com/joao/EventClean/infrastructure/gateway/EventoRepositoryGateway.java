@@ -42,7 +42,13 @@ public class EventoRepositoryGateway implements EventoGateway {
 
     @Override
     public Optional<Evento> filtrarPorIdentificador(String identificador) {
-        return eventoRepository.findByIdentificador(identificador);    
+        return eventoRepository.findByIdentificador(identificador);
+    }
+
+    @Override
+    public Evento criarCodigo(Evento evento) {
+        EventoEntity novoEvento = eventoRepository.save(mapper.toEntity(evento));
+        return mapper.toDomain(novoEvento);
     }
 
 }
