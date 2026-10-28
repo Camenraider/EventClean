@@ -1,6 +1,8 @@
 spring:
   application:
     name: EventClean
+  profiles:
+    active: production 
 
   datasource:
     url: jdbc:postgresql://localhost:5431/EventClean
